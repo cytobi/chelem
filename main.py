@@ -1,3 +1,7 @@
+# run this to check if a word can be printed using the letter combinations provided in the dictionary
+# if -q is passed as an argument, the program will ask for a word and print the result
+# otherwise, it will print all the words in the provided dataset, that can be printed using the provided dictionary
+
 import sys
 
 # checks if <word> can be printed using elements of <print_with> with a maximum length of <max_length>
@@ -23,16 +27,16 @@ def prettify_breakdown(breakdown, separator=""):
     return capitalized
 
 
-dataset_path = "./datasets/"
+dataset_path = "./datasets/" # path to the folder containing the datasets
 
-elem_path = dataset_path + "chemical-elements.txt"
+dict_path = dataset_path + "chemical-elements.txt" 
 
-chemical_elements = []
-with open(elem_path, 'r') as file:
+dict_elements = []
+with open(dict_path, 'r') as file:
     for line in file:
-        chemical_elements.append(line.strip().lower())
+        dict_elements.append(line.strip().lower())
 
-chemical_elements.sort()
+dict_elements.sort()
 
 words_path = dataset_path + "MIT-10000-english-words.txt"
 
@@ -43,7 +47,7 @@ with open(words_path, 'r') as file:
 
 if "-q" in sys.argv:
     user_input = input("Enter a word: ").lower()
-    result = printable(user_input, chemical_elements)
+    result = printable(user_input, dict_elements)
     if result[0]:
         print(prettify_breakdown(result[1], " "))
     else:
@@ -52,7 +56,7 @@ if "-q" in sys.argv:
 
 printable_words = []
 for word in words:
-    result = printable(word, chemical_elements)
+    result = printable(word, dict_elements)
     if result[0]:
         printable_words.append(word + " => " + prettify_breakdown(result[1]))
 
