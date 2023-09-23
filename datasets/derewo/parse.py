@@ -4,8 +4,8 @@
 import os
 
 dataset_path = "./datasets/derewo/"
-source_file = dataset_path + "derewo-v-30000g-2007-12-31-0.1/derewo-v-30000g-2007-12-31-0.1"
-target_filename = "derewo-30000g.txt"
+source_file = dataset_path + "derewo-v-ww-bll-320000g-2012-12-31-1.0/derewo-v-ww-bll-320000g-2012-12-31-1.0.txt"
+target_filename = "derewo-320000g.txt"
 
 # create the output folder if it doesn't exist
 if not os.path.exists(dataset_path + "parsed/"):
@@ -17,15 +17,15 @@ source_lines = []
 past_header = False
 with open(source_file, 'r') as file:
     for line in file:
-        if past_header and len(line.strip()) > 0:
+        if past_header and len(line.strip().strip("#")) > 0:
             source_lines.append(line.strip().lower())
-        if line.startswith("--------------"):
+        if line.strip("#").strip().startswith("--------------"):
             past_header = True
 
 # remove numbers
 words = []
 for line in source_lines:
-    words.append(line.split("\t")[0])
+    words.append(line.split("\t")[0].split(" ")[0])
 
 words.sort()
 
