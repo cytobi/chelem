@@ -38,12 +38,13 @@ with open(dict_path, 'r') as file:
 
 dict_elements.sort()
 
-words_path = dataset_path + "MIT-10000-english-words.txt"
+words_path = dataset_path + "derewo/parsed/derewo-30000g.txt"
 
 words = []
 with open(words_path, 'r') as file:
     for line in file:
-        words.append(line.strip().lower())
+        if len(line.strip()) > 0:
+            words.append(line.strip().lower())
 
 if "-q" in sys.argv:
     user_input = input("Enter a word: ").lower()
