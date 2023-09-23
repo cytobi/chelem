@@ -62,4 +62,4 @@ for word in words:
         printable_words.append(word + " => " + prettify_breakdown(result[1]))
 
 print(printable_words)
-print("total amount: " + len(printable_words))
+print("total amount: " + str(len(printable_words)))
