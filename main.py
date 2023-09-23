@@ -38,7 +38,7 @@ with open(dict_path, 'r') as file:
 
 dict_elements.sort()
 
-words_path = dataset_path + "derewo/parsed/derewo-30000g.txt"
+words_path = dataset_path + "derewo/parsed/derewo-320000g.txt"
 
 words = []
 with open(words_path, 'r') as file:
@@ -62,3 +62,4 @@ for word in words:
         printable_words.append(word + " => " + prettify_breakdown(result[1]))
 
 print(printable_words)
+print("total amount: " + len(printable_words))
